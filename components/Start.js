@@ -6,7 +6,8 @@ import {
   TextInput,
   ImageBackground,
   TouchableOpacity,
-  Image,
+  Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 
 // Define the Start component
@@ -36,6 +37,10 @@ const Start = ({ navigation }) => {
           <View style={styles.colorButtonsContainer}>
             {/* Render a TouchableOpacity for each color option */}
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="More options"
+              accessibilityHint="Lets you choose to send an image or your geolocation."
+              accessibilityRole="button"
               style={[
                 styles.chooseColor,
                 { backgroundColor: "#090C08" },
@@ -81,6 +86,9 @@ const Start = ({ navigation }) => {
           <Text style={styles.textButton}>Start Chatting</Text>
         </TouchableOpacity>
       </View>
+      {Platform.OS === "ios" ? (
+        <KeyboardAvoidingView behavior="padding" />
+      ) : null}
     </ImageBackground>
   );
 };
@@ -155,14 +163,14 @@ const styles = StyleSheet.create({
   },
 
   selectedColor: {
-    borderColor: "#b6a54f",
-    borderWidth: 1,
+    borderColor: "#7d6c17",
+    borderWidth: 1.5,
   },
 
   chooseColorText: {
     fontSize: 16,
     fontWeight: "300",
-    color: "#818181",
+    color: "#757083",
     alignSelf: "center",
     marginBottom: 10,
   },
