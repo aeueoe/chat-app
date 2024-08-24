@@ -10,7 +10,6 @@ import {
   KeyboardAvoidingView,
   Alert,
 } from "react-native";
-
 import { getAuth, signInAnonymously } from "firebase/auth";
 
 // Define the Start component
