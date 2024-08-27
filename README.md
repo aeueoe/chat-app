@@ -2,146 +2,49 @@
 
 A mobile chat application built with React Native. The app will provide users with a chat interface and options to share images and their location.
 
-## Project Features
+### User Stories
 
-- Send and receive messages in real-time
+- As a new user, I want to be able to easily enter a chat room, so I can quickly start talking to my friends and family.
+- As a user, I want to be able to send messages to my friends and family members to exchange the latest news.
+- As a user, I want to send images to my friends to show them what I’m currently doing.
+- As a user, I want to share my location with my friends to show them where I am.
+- As a user, I want to be able to read my messages offline, so I can reread conversations at any time.
+- As a user with a visual impairment, I want to use a chat app that is compatible with a screen reader so that I can engage with a chat interface.
 
-- Share location
+<h3>Technologies Used</h3>
+<ul>
+  <li>React-Native</li>
+  <li>Expo</li>
+  <li>Firebase</li>
+</ul>
 
-- Take a photo and share
+<h3>Key Features</h3>
+<ul>
+  <li>Home screen where users can enter their username and select a background color for the chat display</li>
+  <li>Chat interface that allows users to send pictures from their media library or take a picture with their camera, as well as share their current location</li>
+  <li>Chat Application uses in-build permission check to ask for permission before accessing location data, media library and camera</li>
+</ul>
 
-- Select and share photos from your library
+<h3>Getting Started</h3>
 
-- Personalize your theme
+<h4>Requirements</h4>
+<ul>
+  <li>Node.js</li>
+  <li>Expo Command Line Interface (CLI)</li>
+</ul>
+<code>npm install --global expo-cli</code>
 
-### Getting Started
+<h4>Setup</h4>
+<p>Clone the repo or download the files, and install dependencies</p>
+<code>npm install</code>
 
-- **Technologies**
+<h4>Run the App</h4>
+<p>To get the app running use:</p>
+<code>expo start</code>
 
-  - React Native
-  - Expo and Expo Go App
-  - Google Firestore Database
+<p><b>NOTE:</b> You will need to setup an account with <a href="https://expo.dev/">Expo</a> before you can view your app and get it up and running.</p>
 
-- **Libraries**
-  - Gifted Chat library
-  - Expo ImagePicker
-  - Expo MediaLibrary
-  - Expo Location
-
-To run this app locally, you'll need to follow these steps:
-
-- Clone this repository.
-- Set up Expo in your development environment:
-
-  - Install Expo and Expo CLI, as this is the platform you’ll use to build your app;
-
-        npm install -g expo-cli
-
-  - Install Expo Go app on your mobile device, so that you can test your app on your own mobile device;
-
-    Search for the Expo Go app in the relevant app store for your device (iOS or Android)
-
-  - Create an Expo account.
-
-### Prerequisites
-
-Before installing Expo, ensure you have a suitable version of Node installed. At the time of writing, Expo only supports Node 16.. at max.
-
-Node.js: Download and install Node.js. For this you can use the nvm tool https://github.com/nvm-sh/nvm
-
-    nvm install 16.19.0
-    nvm use 16.19.0
-    nvm alias default 16.19.0
-
-Navigate to the chat-app directory and install all dependencies:
-
-    npm install
-
-## Setting the Firestore Database
-
-- Sign up into Google Firebase
-
-- On the main page, you will see the option to "Create a project" or "Add new project" if this is not your first project.
-
-  - Give your project a name, for example, "chat-app."
-  - Enable or disable Google Analytics for this project. (For this project, I disabled Analytics)
-
-1. **You will need first to create a Database to store the messages for your chat app**.
-
-- Head to the menu on the left-hand side of the page and click on Build than on Firestore Database and Create Database
-
-      Build > Firestore Database > Create Database Button
-
-- A modal will appear, prompting you to select the location for storing Cloud Firestore data.
-
-      Database ID is set to Default
-
-      From the dropdown menu, select the location where your Users are located.
-
-- For this project, I selected **Start in production mode**, click Next.
-
-- Under Data Tab click on **Start Collection** and give the name, for example, "messages"
-- Next for the **Document Id** click on **Auto ID** to auto-generate a document ID. Click **Save** . The new messages will be now saved in this collection and the **Fields** are defined in code > Chat.js
-
-- Click the Rules tab on the Firestore dashboard. With its default configuration, the database doesn’t allow read-and-write queries from a mobile or web app to be performed. We need to change this piece of code. Change false to true in the following line:
-
-      allow read, write: if false;
-
-  to:
-
-       allow read, write: if true;
-
-- Click **Publish**
-
-- Next, navigate to Project Setting on the left-hand side of the page. Under the General tab, find the Your Apps option. Choose a platform to start your app. For this project, I selected Web.
-
-         Project Settings > General Tab > Your Apps > Web ( </> ).
-
-- Give your App a nickname and click **Register**.
-
-- Here you will find your web app's Firebase configuration and you need to copy them in App.js:
-
-      const firebaseConfig = {
-        apiKey: "your-api-key",
-        authDomain: "your-authdomain",
-        projectId: "your-project-id",
-        storageBucket: "your-storage-bucket",
-        messagingSenderId: "your-messaging-sender-id",
-        appId: "your-app-id",
-        };
-
-2.  **Implement an authentication process into your app**
-
-- Head to your Firestore dashbord and under Build click Authentication and Get Started button. By default, you should be taken to the Sign-in method tab.
-
-      Build > Authentication > Get Started button > Sign-in method tab
-
-- From the wide range of authentication methods provided by Firestore Google, I opted for the Anonymous option, which suffices for this project.
-
-  - Enable Anonymous and click **Save** . With anonymous authentication, you receive a user object with an ID in it, which you can then store in your database for that particular user. The authentication code resides in Start.js component.
-
-3. **To be able to store and send images or videos in your native chat app, you’ll need to set up Firebase Storage**
-
-- Head to your Firestore dashbord and under Build click Storage and Get Started button. A popup will open that asks you to set your cloud storage. Keep everything on default and press **Next**, then **Done**
-
-- You need to allow uploading and downloading files to and from the storage, from whichever device connects to your Firebase Storage.
-
-- Go to the Rules tab, change false to true in the following line:
-
-        allow read, write: if false;
-
-  to:
-
-         allow read, write: if true;
-
-- Click **Publish**
-
-- You don’t need to configure anything else because everything you need to work with Firebase Cloud Storage is already built into the Firestore library.
-
-## After seting up the Firestore Database you can now start the App.
-
-- Initialize the app in your terminal:
-
-      npx expo start
-
-- Use the Expo Go App on your mobile device to check the UI
+<h4>Viewing the application</h4>
+<p>You can run this application on your mobile device by downloading the Expo app from your app store.</p>
+<p>Alternatively you can run IOS Simulator through XCode or Android Studio.</p>
+<p><b>NOTE:</b> You will need to setup your own <a href="https://firebase.google.com/">firebase database</a>, you will need to setup your own firebase database and add your own database credentials in /components/chat.js, under the "Firebase Config Details", then allow anonymous authorization with your Database.</p>
