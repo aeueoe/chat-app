@@ -49,6 +49,6 @@ A mobile chat application built with React Native. The app will provide users wi
 <p>Alternatively you can run IOS Simulator through XCode or Android Studio.</p>
 <p><b>NOTE:</b> You will need to setup your own <a href="https://firebase.google.com/">firebase database</a>, you will need to setup your own firebase database and add your own database credentials in /components/chat.js, under the "Firebase Config Details", then allow anonymous authorization with your Database.</p>
 
-![1](./assets/1.PNG)
-![2](./assets/3.png)
-![3](./assets/2.png)
+<img src="./assets/1.PNG"  width="400">
+<img src="./assets/3.png"  width="400">
+<img src="./assets/2.png"  width="400">
